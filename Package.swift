@@ -3,20 +3,20 @@
 import PackageDescription
 
 let package = Package(
-    name: "SplashDeck",
+    name: "SplashNative",
     defaultLocalization: "en",
     platforms: [.macOS("26.4")],
     products: [
-        .executable(name: "SplashDeck", targets: ["SplashDeck"]),
+        .executable(name: "SplashNative", targets: ["SplashNative"]),
     ],
     targets: [
         .target(
-            name: "DeckCore",
-            path: "Sources/DeckCore",
+            name: "NativeCore",
+            path: "Sources/NativeCore",
             resources: [.copy("Resources/splash_probe.py"), .copy("Resources/splash_models.py"), .process("Resources/Localizable.xcstrings")]
         ),
-        .target(name: "DeckUI", path: "Sources/DeckUI", resources: [.process("Resources")]),
-        .executableTarget(name: "SplashDeck", dependencies: ["DeckCore", "DeckUI"], path: "Sources/SplashDeck"),
-        .testTarget(name: "DeckUITests", dependencies: ["DeckUI"], path: "Tests/DeckUITests"),
+        .target(name: "NativeUI", path: "Sources/NativeUI", resources: [.process("Resources")]),
+        .executableTarget(name: "SplashNative", dependencies: ["NativeCore", "NativeUI"], path: "Sources/SplashNative"),
+        .testTarget(name: "NativeUITests", dependencies: ["NativeUI"], path: "Tests/NativeUITests"),
     ]
 )
